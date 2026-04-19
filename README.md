@@ -6,6 +6,8 @@ Fullstack leasing application with:
 - PostgreSQL database
 - JWT-based authentication flow
 
+<img width="1919" height="1079" alt="Screenshot 2026-04-18 214224" src="https://github.com/user-attachments/assets/e849ec8c-9770-4007-b25e-ddcd4ff7a910" />
+
 ## Features
 
 - User registration and login
