@@ -1,47 +1,57 @@
 # Leasing & Registration System
 
-Fullstack leasing application with:
-- Next.js (App Router) frontend
-- NestJS backend (REST APIs)
-- PostgreSQL database
-- JWT-based authentication flow
+Full-stack portfolio demo for a leasing and registration workflow. The project combines a Next.js frontend, a NestJS REST API, and PostgreSQL, with JWT-based authentication and Docker-based local deployment.
 
 <img width="1919" height="1079" alt="Screenshot 2026-04-18 214224" src="https://github.com/user-attachments/assets/e849ec8c-9770-4007-b25e-ddcd4ff7a910" />
+
+## Overview
+
+This project was built as a demo system to showcase:
+
+- modern full-stack architecture
+- authenticated user flows
+- CRUD-style leasing workflows
+- database-backed data management
+- containerized development and deployment
 
 ## Features
 
 - User registration and login
+- JWT authentication with protected routes
 - Password hashing with bcrypt
-- JWT access token issuance
-- Protected lease endpoints with NestJS guards
-- Lease creation and user-specific lease history
-- Basic lease status workflow (`pending`, `approved`, `rejected`)
+- Lease creation and personal lease history
+- Lease status workflow: `pending`, `approved`, `rejected`
+- Responsive frontend built with Next.js App Router and Tailwind CSS
+- Docker Compose setup for the full stack
 
 ## Tech Stack
 
 - Frontend: Next.js 16, React 19, TypeScript, Tailwind CSS
-- Backend: NestJS 11, TypeORM, PostgreSQL, Passport JWT, class-validator
-- Database: PostgreSQL 16 (via Docker Compose)
+- Backend: NestJS 11, TypeORM, Passport JWT, class-validator
+- Database: PostgreSQL 16
+- Tooling: Docker, ESLint, Prettier
 
 ## Project Structure
 
-- `frontend/`: Next.js client app
-- `backend/`: NestJS API server
-- `docker-compose.yml`: full stack orchestration (frontend, backend, PostgreSQL)
+- `frontend/` - Next.js client application
+- `backend/` - NestJS API server
+- `docker-compose.yml` - local orchestration for frontend, backend, and PostgreSQL
 
-## Managed Docker Deployment
+## Getting Started
 
-Run everything in containers:
+### Option 1: Run with Docker
+
+This is the easiest way to run the entire stack.
 
 ```bash
 docker compose up --build -d
 ```
 
-Services:
+After startup:
 
 - Frontend: http://localhost:3000
 - Backend: http://localhost:3001
-- PostgreSQL: localhost:5433 (container port 5432)
+- PostgreSQL: localhost:5433
 
 Useful commands:
 
@@ -51,29 +61,26 @@ docker compose logs -f frontend
 docker compose down
 ```
 
-Notes:
+### Option 2: Run Locally
 
-- Backend in Docker uses internal database host `postgres:5432`.
-- Local host mapping remains `5433:5432` to avoid conflicts with local PostgreSQL on 5432.
-- Make sure ports `3000` and `3001` are free before running full stack Docker, otherwise container startup will fail with `EADDRINUSE`.
+Use this if you want to develop the frontend and backend directly on your machine.
 
-## Quick Start
-
-This section is for running apps directly with Node.js on your machine (without Docker for app runtime).
-
-### 1. Start PostgreSQL
+#### 1. Start PostgreSQL
 
 ```bash
 docker compose up -d postgres
 ```
 
-### 2. Configure backend env
+#### 2. Configure the backend
 
-Create `backend/.env` from `backend/.env.example`.
+Copy `backend/.env.example` to `backend/.env` and fill in the values.
 
-The default setup uses `DB_HOST=127.0.0.1` and `DB_PORT=5433` to avoid conflicts with any local PostgreSQL already running on port 5432.
+The default local setup expects:
 
-### 3. Run backend
+- `DB_HOST=127.0.0.1`
+- `DB_PORT=5433`
+
+#### 3. Run the backend
 
 ```bash
 cd backend
@@ -81,13 +88,13 @@ npm install
 npm run start:dev
 ```
 
-Backend runs on `http://localhost:3001` by default.
+Backend runs on http://localhost:3001.
 
-### 4. Configure frontend env
+#### 4. Configure the frontend
 
-Create `frontend/.env.local` from `frontend/.env.example`.
+Copy `frontend/.env.example` to `frontend/.env.local`.
 
-### 5. Run frontend
+#### 5. Run the frontend
 
 ```bash
 cd frontend
@@ -95,23 +102,42 @@ npm install
 npm run dev
 ```
 
-Frontend runs on `http://localhost:3000`.
+Frontend runs on http://localhost:3000.
 
-## Main API Endpoints
+## Environment Variables
+
+### Backend
+
+- `PORT`
+- `FRONTEND_ORIGIN`
+- `DB_HOST`
+- `DB_PORT`
+- `DB_USER`
+- `DB_PASSWORD`
+- `DB_NAME`
+- `DB_SYNCHRONIZE`
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN`
+
+### Frontend
+
+- `NEXT_PUBLIC_API_URL`
+
+## API Endpoints
 
 ### Auth
 
 - `POST /auth/register`
 - `POST /auth/login`
 
-### Leases (JWT required)
+### Leases
 
 - `POST /leases`
 - `GET /leases/me`
 - `GET /leases`
 - `PATCH /leases/:id/status`
 
-## Sample Request Bodies
+## Example Payloads
 
 ### Register
 
@@ -142,3 +168,8 @@ Frontend runs on `http://localhost:3000`.
   "startDate": "2026-05-01"
 }
 ```
+
+## Notes
+
+- This is a demo/portfolio project, so the default data and setup are intended for local development and showcase purposes.
+- Keep secrets in local `.env` files only. Commit `.env.example` files instead.
