@@ -1,6 +1,6 @@
 # Leasing & Registration System
 
-Full-stack portfolio demo for a leasing and registration workflow. The project combines a Next.js frontend, a NestJS REST API, and PostgreSQL, with JWT-based authentication and Docker-based local deployment.
+Full-stack app for a leasing and registration workflow. The project combines a Next.js frontend, a NestJS REST API, and PostgreSQL, with JWT-based authentication and Docker-based local deployment.
 
 <img width="1919" height="1079" alt="Screenshot 2026-04-18 214224" src="https://github.com/user-attachments/assets/e849ec8c-9770-4007-b25e-ddcd4ff7a910" />
 
