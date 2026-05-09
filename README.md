@@ -171,5 +171,5 @@ Frontend runs on http://localhost:3000.
 
 ## Notes
 
-- This is a demo/portfolio project, so the default data and setup are intended for local development and showcase purposes.
+- This is a demo project, so the default data and setup are intended for local development and showcase purposes.
 - Keep secrets in local `.env` files only. Commit `.env.example` files instead.
